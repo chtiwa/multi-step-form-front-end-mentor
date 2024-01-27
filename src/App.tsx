@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useFormStore } from "./context/formStore"
+import LeftSide from "./form/LeftSide"
+import PrevNext from "./form/PrevNext"
+import StepOne from "./form/StepOne"
+import StepTwo from "./form/StepTwo"
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { index } = useFormStore()
+  const CurrentStep = () => {
+    if (index === 1) {
+      return <StepOne />
+    } else if (index === 2) {
+      return <StepTwo />
+    } else if (index === 3) {
+      return <StepTwo />
+    } else if (index === 4) {
+      return <StepTwo />
+    }
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="h-screen w-screen bg-magnolia flex justify-center">
+      <div className="bg-alabaster rounded-lg drop-shadow-md h-[700px] w-11/12 max-w-6xl p-4 mt-32 flex gap-4">
+        <div className="w-4/12">
+          <LeftSide index={index} />
+        </div>
+        <div className="w-8/12 p-16 flex flex-col justify-between h-full">
+          <CurrentStep />
+          <PrevNext />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
