@@ -1,11 +1,7 @@
-import { useState, useEffect } from "react"
+import { useFormStore } from "../context/formStore"
 
 const StepTwo = () => {
-  const [currentIndex, setCurrentIndex] = useState(1)
-  const [isMonthly, setIsMonthly] = useState(true)
-  useEffect(() => {
-    console.log(isMonthly)
-  }, [isMonthly])
+  const { isMonthly, setIsMonthly, plan, setPlan } = useFormStore()
 
   const data = [
     {
@@ -29,13 +25,15 @@ const StepTwo = () => {
   ]
 
   const toggleIsMonthly = () => {
-    setIsMonthly((prev) => !prev)
+    setIsMonthly(!isMonthly)
   }
 
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold">Select your plan</h1>
+        <h1 className="text-3xl font-bold text-marine-blue">
+          Select your plan
+        </h1>
         <p className="text-cool-gray">
           You have the option of monthly or yearly billing.
         </p>
@@ -45,11 +43,11 @@ const StepTwo = () => {
         {data.map((item, i) => (
           <div
             className={`flex flex-col items-start justify-between w-1/3 px-4 py-3 border rounded-md hover:cursor-pointer ${
-              currentIndex === i + 1
+              plan === item.title
                 ? " border-pastel-blue bg-magnolia"
                 : "border-light-blue"
             } `}
-            onClick={() => setCurrentIndex(i + 1)}
+            onClick={() => setPlan(item.title)}
             key={i}
           >
             <img
@@ -77,6 +75,7 @@ const StepTwo = () => {
             value=""
             className="sr-only peer"
             onChange={() => toggleIsMonthly()}
+            checked={!isMonthly}
           />
           <div className="w-11 h-6 bg-purplish-blue peer-focus:outline-none peer-focus:ring-purplish-blue rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-purplish-blue  after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-alabaster after:border-purplish-blue after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-purplish-blue"></div>
         </label>

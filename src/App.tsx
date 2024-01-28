@@ -1,7 +1,9 @@
 import { useFormStore } from "./context/formStore"
 import LeftSide from "./form/LeftSide"
 import PrevNext from "./form/PrevNext"
+import StepFour from "./form/StepFour"
 import StepOne from "./form/StepOne"
+import StepThree from "./form/StepThree"
 import StepTwo from "./form/StepTwo"
 
 const App = () => {
@@ -12,9 +14,9 @@ const App = () => {
     } else if (index === 2) {
       return <StepTwo />
     } else if (index === 3) {
-      return <StepTwo />
+      return <StepThree />
     } else if (index === 4) {
-      return <StepTwo />
+      return <StepFour />
     }
   }
   return (

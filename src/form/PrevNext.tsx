@@ -14,7 +14,7 @@ const PrevNext = () => {
         className="px-5 py-3 rounded-md bg-marine-blue text-alabaster"
         onClick={() => inc()}
       >
-        Next Step
+        {index !== 4 ? "Next Step" : "Confirm"}
       </button>
     </div>
   )
